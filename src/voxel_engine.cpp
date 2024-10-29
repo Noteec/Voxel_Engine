@@ -4,37 +4,19 @@
 #define GLEW_STATIC
 #include"../include/GL/glew.h"
 #include"../include/GLFW/glfw3.h"
+#include"window/Window.h"
 
 int WIDTH = 1280;
 int HEIGHT = 720;
 
 int main() {
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    Window::initialize(WIDTH, HEIGHT, "Window 2.0");
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Window", nullptr, nullptr);
-    if(window == nullptr){
-        std::cerr << "FAiled to create GLFW Window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-
-    glewExperimental = GL_TRUE;
-    if(glewInit() != GLEW_OK){
-        std::cerr << "Failed to initialize GLEW" << std::endl;
-        return -1;
-    }
-
-    glViewport(0, 0, WIDTH, HEIGHT);
-
-    while(!glfwWindowShouldClose(window)){
+    while(!Window::isShouldClose()){
         glfwPollEvents();
-        glfwSwapBuffers(window);
+        Window::swapBuffers();
     }
+    Window::terminate();
 
     return 0;
 }
