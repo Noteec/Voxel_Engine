@@ -19,7 +19,7 @@ include_directories(
 )
 
 # Укажите исходные файлы
-add_executable(MineCraft src/voxel_engine.cpp src/window/Window.cpp)
+add_executable(MineCraft src/voxel_engine.cpp src/window/Window.cpp src/window/Events.cpp)
 
 # Линкуем библиотеки
 target_link_libraries(MineCraft 

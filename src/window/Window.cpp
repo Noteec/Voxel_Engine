@@ -1,11 +1,11 @@
 #include<iostream>
+#include "Window.h"
 
 #define GLEW_STATIC
 #include"../../include/GL/glew.h"
 #include "../../include/GLFW/glfw3.h"
-#include "Window.h"
 
-GLFWwindow* Window::window;
+GLFWwindow* Window::window = nullptr;
 
 int Window::initialize(int width, int height, const char* title){
     glfwInit();
@@ -41,6 +41,11 @@ void Window::terminate() {
 
 bool Window::isShouldClose(){
     return glfwWindowShouldClose(window);
+}
+
+void Window::setShouldClose(bool flag)
+{
+    glfwSetWindowShouldClose(window, flag);
 }
 
 void Window::swapBuffers(){
